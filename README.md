@@ -42,13 +42,13 @@ proyecto-psa
 
 Para configurar el ambiente de desarrollo y testing, se quiere la instalación y configuración del siguiente SW:
 
-### Git
+### Git (control de versión de código)
 
 Desde la página oficial, descargar el instalar Git:
 
 https://git-scm.com/
 
-### GitHub
+### GitHub. Plataforma de gestión de código, issues y otros. (General)
 
 Desde la página oficial de Github:
 
@@ -56,7 +56,7 @@ https://github.com/
 
 Crear o usar una cuenta personal.
 
-### Java JDK
+### Java JDK (Desarrollo)
 
 Instalar y configurar Java JDK o OpenJDK v11:
 
@@ -64,7 +64,7 @@ https://www.oracle.com/java/technologies/downloads/#java11-windows
 
 NOTA: en caso de Windows, agregar Java en las variables de entorno.
 
-### Maven
+### Maven. Gestión de paquetes para Java, Spring (Desarrollo)
 
 Instalar y configurar Maven:
 
@@ -72,7 +72,7 @@ https://maven.apache.org/download.cgi
 
 NOTA: en caso de Windows, agregar Maven en las variables de entorno.
 
-### IntelliJ
+### IntelliJ (IDE para desarrollo)
 
 Como IDE de desarrollo, descargar e instalar IntelliJ versión "ULTIMATE":
 
@@ -81,11 +81,15 @@ https://www.jetbrains.com/idea/download/#section=windows
 IMPORTANTE: para acceder a una licencia de estudiando por 1 año: https://www.jetbrains.com/community/education/#students
 
 
-### Postman
+### Postman (para Testing)
 
 Para las pruebas de APIs, instalar y configurar Postman:
 
 https://www.postman.com/downloads/?utm_source=postman-home
+
+### Newman (subproyecto de Postman para automatizar la ejecución de collections)
+
+TBD. Requiere NodeJS.
 
 ### Python (para testing)
 
