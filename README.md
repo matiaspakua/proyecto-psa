@@ -10,7 +10,7 @@ Se propone una estructura de mono-repsitorio. En un mismo proyeecto de Git se ar
 proyecto-psa
 │   README.md
 │   .gitignore
-└───Develop           # proyecto Java SpringBoot (Desarrollo)
+└───develop           # proyecto Java SpringBoot (Desarrollo)
 │   │   file011.txt
 │   │   file012.txt
 │   │
@@ -18,7 +18,7 @@ proyecto-psa
 │       │   file111.txt
 │       │   file112.txt
 │       │   ...
-└───Testing           # proyecto de testing para el producto PSA New Spring ERP
+└───testing           # proyecto de testing para el producto PSA New Spring ERP
 │   │
 │   └───subfolder1
 │       │   file111.txt
@@ -31,7 +31,7 @@ proyecto-psa
 │   └───subfolder1
 │       │   ...
 │
-└───Deploy            # Proyecto con los scripts de deploy (operaciones)
+└───deploy            # Proyecto con los scripts de deploy (operaciones)
 │   │   file011.txt
 │   │   file012.txt
 │   │
