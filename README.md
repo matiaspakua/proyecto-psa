@@ -37,3 +37,46 @@ proyecto-psa
 │   │
 │   └───subfolder1
 ```
+
+## Ambiente de Desarrollo
+
+Para configurar el ambiente de desarrollo y testing, se quiere la instalación y configuración del siguiente SW:
+
+### Git
+
+Desde la página oficial, descargar el instalar Git:
+
+https://git-scm.com/
+
+### GitHub
+
+Desde la página oficial de Github:
+
+https://github.com/
+
+Crear o usar una cuenta personal.
+
+### Java JDK
+
+Instalar y configurar Java JDK o OpenJDK v11:
+
+https://www.oracle.com/java/technologies/downloads/#java11-windows
+
+NOTA: en caso de Windows, agregar Java en las variables de entorno.
+
+### Maven
+
+Instalar y configurar Maven:
+
+https://maven.apache.org/download.cgi
+
+NOTA: en caso de Windows, agregar Maven en las variables de entorno.
+
+### IntelliJ
+
+Como IDE de desarrollo, descargar e instalar IntelliJ versión "ULTIMATE":
+
+https://www.jetbrains.com/idea/download/#section=windows
+
+IMPORTANTE: para acceder a una licencia de estudiando por 1 año: https://www.jetbrains.com/community/education/#students
+
