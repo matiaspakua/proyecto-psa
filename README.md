@@ -80,3 +80,52 @@ https://www.jetbrains.com/idea/download/#section=windows
 
 IMPORTANTE: para acceder a una licencia de estudiando por 1 año: https://www.jetbrains.com/community/education/#students
 
+
+### Postman
+
+Para las pruebas de APIs, instalar y configurar Postman:
+
+https://www.postman.com/downloads/?utm_source=postman-home
+
+### Python (para testing)
+
+Para el caso de testing, RobotFramework requiere Python, pero aún sin usar Robot, puede ser una herramienta útil para testear o scriptear en la parte de infraestructura.
+
+https://www.python.org/downloads/
+
+### RobotFramwork (para testing)
+
+Para instalar RobotFramework, desde la consola bash de Git, verificar que esté correctamente instalado Python:
+
+```bash
+matias@LaptopMatias MINGW64 ~/workspace/proyecto-psa (main)
+$ python --version
+Python 3.9.5
+```
+
+Luego verificar que esté instalado el manejador de paquetes PIP:
+
+```bash
+matias@LaptopMatias MINGW64 ~/workspace/proyecto-psa (main)
+$ pip --version
+pip 21.3 from c:\users\matias\appdata\local\programs\python\python39\lib\site-packages\pip (python 3.9)
+```
+
+Instalar RobotFramework==3.2.2:
+
+```bash
+matias@LaptopMatias MINGW64 ~/workspace/proyecto-psa (main)
+$ pip install robotframework==3.2.2
+Collecting robotframework==3.2.2
+  Downloading robotframework-3.2.2-py2.py3-none-any.whl (623 kB)
+Installing collected packages: robotframework
+Successfully installed robotframework-3.2.2
+```
+
+### IDE RED Eclipse RobotFramework (para testing):
+
+Descargar, descomprimir y ejecutar Eclipse RED:
+
+https://github.com/nokia/RED/releases/tag/0.9.5
+
+NOTA: Eclipse solamente requiere que Java esté instalado y configurado en las variables de entorno.
