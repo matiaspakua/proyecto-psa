@@ -6,6 +6,11 @@ Para probar se puede usar el [Visual Studio Code]([visual studio code](https://c
 
 ## Ejecución:
 
-Para ejecutar el proyecto, con el plugin de LiveServer instalado, pararse sobre el HTML y con el boton derecho hacer: "Open with LiveServer":
+1. Para ejecutar el proyecto, con el plugin de LiveServer instalado, pararse sobre el HTML y con el boton derecho hacer: "Open with LiveServer":
 
  ![Ejecutar WEB](resources/images/execute.png)
+
+
+2. Verificar en el navegador: **localhost:5500**
+
+ ![Pantalla Principal](resources/images/index.png)
