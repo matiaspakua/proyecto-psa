@@ -6,7 +6,7 @@ Backend API de pagos.
 
 1. git clone <repo-github>:
 
- ![Clonar Repo](/resources/images/clone.png)
+ ![Clonar Repo](resources/images/clone.png)
 
 2. Instalar VisualStudio Code o IntelliJ.
 
@@ -16,7 +16,7 @@ Backend API de pagos.
 
 5. Ejecutar el proyecto. ver imagen:
 
- ![Instalar y compilar](/resources/images/install-and-compile.png)
+ ![Instalar y compilar](resources/images/install-and-compile.png)
 
 6. Abir en el navegar/browser: localhost:8080
 
@@ -38,4 +38,4 @@ Backend API de pagos.
 
 7. Verificar endpoints disponibles con Swagger: http://localhost:8080/swagger-ui.html
 
- ![Abrir API Swagger](/resources/images/swagger.png)
+ ![Abrir API Swagger](resources/images/swagger.png)
