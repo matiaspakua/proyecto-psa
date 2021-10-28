@@ -9,6 +9,8 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cbu;
 
+    private String name;
+
     private Double balance;
 
     public Account(){
@@ -16,6 +18,14 @@ public class Account {
 
     public Account(Double balance) {
         this.balance = balance;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String newName){
+        this.name = newName;
     }
 
     public Long getCbu() {

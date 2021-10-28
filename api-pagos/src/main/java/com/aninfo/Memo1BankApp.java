@@ -61,6 +61,8 @@ public class Memo1BankApp {
 			return ResponseEntity.notFound().build();
 		}
 		account.setCbu(cbu);
+		account.setName(accountOptional.get().getName());
+		
 		accountService.save(account);
 		return ResponseEntity.noContent().build();
 	}
