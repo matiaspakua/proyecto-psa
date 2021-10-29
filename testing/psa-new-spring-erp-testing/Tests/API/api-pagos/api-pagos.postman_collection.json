@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "945e3a37-5977-4605-837d-8c949aed48dd",
+		"name": "api-pagos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CrearNuevaCuenta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CBU_TEST\", jsonData.cbu);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"balance\": 1234,\r\n  \"name\": \"BRUBANK\",\r\n  \"cbu\": 111222,\r\n  \"currency\": \"BTC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearTransacciónDeDeposito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CBU_TEST\", jsonData.cbu);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cbu\": 1,\r\n  \"id\": 1,\r\n  \"sum\": 500,\r\n  \"type\": \"DEPOSIT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}/transactions",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearTransacciónDeRetiro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"CBU_TEST\", jsonData.cbu);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cbu\": 1,\r\n  \"id\": 1,\r\n  \"sum\": 500,\r\n  \"type\": \"WITHDRAWAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}/transactions",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerTodasLasCuentas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData  = JSON.parse(responseBody);",
+							"var accountSize = jsonData.length - 1;",
+							"var lastCbu = jsonData[accountSize].cbu;",
+							"",
+							"console.log(\"The last CBU is: \" + lastCbu);",
+							"",
+							"postman.setEnvironmentVariable(\"CBU_TEST\", lastCbu);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/accounts",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerCuentaPorCbu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerListaDeTransacciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}/transactions",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarSaldoCuenta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"balance\": 1000,\r\n  \"cbu\": 1,\r\n  \"name\":\"saraza\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IngresarDineroEnCuenta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"balance\": 13000,\r\n  \"cbu\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}/deposit?cbu={{CBU_TEST}}&sum=500",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}",
+						"deposit"
+					],
+					"query": [
+						{
+							"key": "cbu",
+							"value": "{{CBU_TEST}}"
+						},
+						{
+							"key": "sum",
+							"value": "500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetirarDineroDeCuenta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"balance\": 13000,\r\n  \"cbu\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}/withdraw?cbu={{CBU_TEST}}&sum=500",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}",
+						"withdraw"
+					],
+					"query": [
+						{
+							"key": "cbu",
+							"value": "{{CBU_TEST}}"
+						},
+						{
+							"key": "sum",
+							"value": "500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BorrarCuenta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/accounts/{{CBU_TEST}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"accounts",
+						"{{CBU_TEST}}",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
