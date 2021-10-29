@@ -14,8 +14,13 @@ public class Account {
     @Column(name = "cbu", unique = true)
     private Long cbu;
 
+    @NotNull
+    private Currency currency;
+
+    @NotNull
     private String name;
 
+    @NotNull
     private Double balance;
 
     public Account(){
@@ -23,6 +28,14 @@ public class Account {
 
     public Account(Double balance) {
         this.balance = balance;
+    }
+
+    public Currency getCurrency(){
+        return this.currency;
+    }
+
+    public void setCurrency(Currency newCurrency){
+        this.currency = newCurrency;
     }
 
     public String getName(){
