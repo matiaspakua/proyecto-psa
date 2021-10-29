@@ -30,11 +30,47 @@
     </div>
   </nav>
 
-  <ul class="sidenav" id="mobile-demo">
-    <li ><a href="sass.html">Home</a></li>
-    <li><a href="badges.html">Contacto</a></li>
-    <li><a href="collapsible.html">Acerca</a></li>
-  </ul>
+  <!-- sidenav menu -->
+  <div class="sidenav" id="mobile-demo">     
+      <div class="row">
+        
+        <h6 class="center-align">Crear una Billetera</h6>
+
+        <!-- wallet name -->
+        <div class="input-field col s10">
+          <i class="material-icons prefix">account_balance_wallet</i>
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Nombre</label>
+        </div>
+
+        <!-- id -->
+        <div class="input-field col s12">
+          <i class="material-icons prefix">payment</i>
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">CBU/ID</label>
+        </div>
+
+        <!-- currency -->
+        <div class="input-field col s10">
+          <i class="material-icons prefix">attach_money</i>
+          <select>
+            <option value="1">ARS</option>
+            <option value="2">USD</option>
+            <option value="3">BTC</option>
+          </select>
+          <label>Moneda</label>
+        </div>
+
+        <!-- create button -->
+        <div class="container col s10 center-align">
+          <button class="btn waves-effect waves-light deep-purple darken-3" type="submit" name="action">Crear
+            <i class="material-icons right">check</i>
+          </button>
+        </div>
+
+
+      </div>
+  </div>
 
   <div class="container">
     <div id="billetera" class="col s12">
@@ -83,6 +119,12 @@
                 <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
             </li>
       </ul>
+      <div class="container  center-align">
+        <a class="btn-floating btn-large waves-effect waves-light deep-purple sidenav-trigger" data-target="mobile-demo" id="create-wallet"><i class="material-icons">add</i></a>
+      </div>
+      
+  
+        
     </div>
 </div>
 </div>
