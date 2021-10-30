@@ -27,6 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     showWallets(`${URI}/accounts/`);
     
   });
+  walletCollection.addEventListener('click', e => {
+
+    if(e.target.textContent === 'delete'){
+      const id = e.target.offsetParent.id;
+      console.log(id + "ha sido eliminado");
+      deleteWallet(id);
+    };
+
+  });
 
   // functions
   const createWallet = (URI) => {
@@ -37,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currency = ["ARS", "USD", "BTC"]; // problema a resolver queda debilmente acomplado al form
 
     const body = {
-      "balance": 0,
+      "balance": getBalance(cbuOrId),
       "name": walletName,
       "cbu": cbuOrId,
       "currency": currency[currencySelection]
@@ -51,28 +60,48 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(body)
     }).then(resp => console.log(resp))
     .catch(err => console.log(err));
+
+    // clean form
+    form['wallet-name'].value = '';
+    form['cbu-or-id'].value = '';
+    form['currency-selection'].value = 0;
   };
 
   const showWallets = (URI) => {
 
+    // clear front
+    walletCollection.innerHTML = '';
+
     fetch(URI)
       .then(resp=> resp.json())
-      .then(data => {
-        data.forEach(arr => {
-          const template = `
-          <li class="collection-item avatar">
-            <i class="material-icons circle">account_balance_wallet</i>
-            <span class="title">${arr.name}</span>
-            <p>${arr.balance} ${arr.currency}<br>
-              --
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-          `;
-          walletCollection.innerHTML += template;
-        })
-      }).catch(err => console.log(err));
+      .then(data => {data.forEach(arr => parseWallets(arr))})
+      .catch(err => console.log(err));
   };
+
+  const parseWallets = (arr) => {
+    const template = `
+    <li class="collection-item avatar">
+    <i class="material-icons circle">account_balance_wallet</i>
+    <span class="title">${arr.name}</span>
+    <p>${arr.balance}${arr.currency}<br>
+       -
+    </p>
+    <a href="#!" id="${arr.id}" class="secondary-content"><i class="material-icons deep-purple-text">delete</i></a>
+  </li>
+    `;
+    walletCollection.innerHTML += template;
+  }
+
+  const deleteWallet = (id) => {
+
+    fetch(`${URI}/accounts/${id}/`, {
+      method:'DELETE'
+    }).then(resp => showWallets(`${URI}/accounts/`));
+  };
+
+  const getBalance = (id) => {
+    return Math.round(Math.random()*id)*10
+  }
 
   // app setup
   showWallets(`${URI}/accounts`);
