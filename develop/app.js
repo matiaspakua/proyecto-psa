@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <p>${arr.balance}${arr.currency}<br>
        -
     </p>
-    <a href="#!" id="${arr.id}" class="secondary-content"><i class="material-icons">delete</i></a>
+    <a href="#!" id="${arr.id}" class="secondary-content"><i class="material-icons deep-purple-text">delete</i></a>
   </li>
     `;
     walletCollection.innerHTML += template;
