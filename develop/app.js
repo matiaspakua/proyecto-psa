@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const URI = 'https://calm-lake-70360.herokuapp.com/swagger-ui.html';
+  const URI = 'https://calm-lake-70360.herokuapp.com';
   
   // materialize setup
   M.AutoInit();
@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // listeners
   buttonCreate.addEventListener('click', e => {
 
-    console.log('click');
-    createWallet(`${URI}/accounts`);
-    showWallets(`${URI}/accounts`);
+    e.preventDefault();
+    createWallet(`${URI}/accounts/`);
+    showWallets(`${URI}/accounts/`);
     
   });
 
@@ -75,6 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // app setup
-  showWallets('http://localhost:8080/accounts');
+  showWallets(`${URI}/accounts`);
 
 });
