@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currency = ["ARS", "USD", "BTC"]; // problema a resolver queda debilmente acomplado al form
 
     const body = {
-      "balance": 0,
+      "balance": getBalance(cbuOrId),
       "name": walletName,
       "cbu": cbuOrId,
       "currency": currency[currencySelection]
@@ -51,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(body)
     }).then(resp => console.log(resp))
     .catch(err => console.log(err));
+
+    // clean form
+    form['wallet-name'].value = '';
+    form['cbu-or-id'].value = '';
+    form['currency-selection'].value = '';
   };
 
   const showWallets = (URI) => {
@@ -73,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       }).catch(err => console.log(err));
   };
+
+  const getBalance = (id) => {
+    return Math.round(Math.random()*id)*100
+  }
 
   // app setup
   showWallets(`${URI}/accounts`);
