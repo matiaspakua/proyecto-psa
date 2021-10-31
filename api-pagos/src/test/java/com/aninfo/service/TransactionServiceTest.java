@@ -1,6 +1,7 @@
 package com.aninfo.service;
 
 import com.aninfo.exceptions.InvalidTransactionTypeException;
+import com.aninfo.factory.TransactionFactory;
 import com.aninfo.model.Transaction;
 import com.aninfo.model.TransactionType;
 import com.aninfo.repository.TransactionRepository;
@@ -33,6 +34,9 @@ class TransactionServiceTest {
     private TransactionRepository transactionRepository;
 
     @Mock
+    private TransactionFactory transactionFactory;
+
+    @Mock
     private AccountService accountService;
 
     @Mock
@@ -48,7 +52,7 @@ class TransactionServiceTest {
     private ArgumentCaptor<Double> sumArgumentCaptor;
 
     @BeforeEach
-    public void before() {
+    public void setUp() {
         initMocks(this);
 
         when(this.transaction.getCbu()).thenReturn(CBU);
@@ -56,34 +60,39 @@ class TransactionServiceTest {
     }
 
     @Test
-    void createTransaction_withoutTransactionTypeThrowsInvalidTransactionTypeException() {
-        assertThrows(InvalidTransactionTypeException.class,
-                () -> this.transactionService.createTransaction(CBU, SUM, null));
+    void createFailedTransaction() {
+        TransactionType transactionType = DEPOSIT;
+        when(this.transactionFactory.createFailedTransaction(CBU, SUM, transactionType)).thenReturn(this.transaction);
+        when(this.transactionRepository.save(this.transaction)).thenReturn(this.otherTransaction);
+
+        this.transactionService.createFailedTransaction(CBU, SUM, transactionType);
+
+        verify(this.transactionFactory).createFailedTransaction(CBU, SUM, transactionType);
+        verify(this.transactionRepository).save(this.transactionArgumentCaptor.capture());
+        assertSame(this.transaction, this.transactionArgumentCaptor.getValue());
+        verifyNoMoreInteractions(this.transactionFactory, this.transactionRepository);
     }
 
     @Test
-    void createTransaction_withDepositAsTransactionType() {
-        this.transactionService.createTransaction(CBU, SUM, DEPOSIT);
+    void createTransaction() {
+        TransactionType transactionType = WITHDRAWAL;
+        when(this.transactionFactory.createSuccessfulTransaction(CBU, SUM, transactionType)).thenReturn(this.transaction);
+        when(this.transactionRepository.save(this.transaction)).thenReturn(this.otherTransaction);
 
+        this.transactionService.createTransaction(CBU, SUM, transactionType);
+
+        verify(this.transactionFactory).createSuccessfulTransaction(CBU, SUM, transactionType);
         verify(this.transactionRepository).save(this.transactionArgumentCaptor.capture());
-        Transaction transactionToSave = this.transactionArgumentCaptor.getValue();
-        assertTransaction(transactionToSave, CBU, SUM, DEPOSIT);
-    }
-
-    @Test
-    void createTransaction_withWithdrawalAsTransactionType() {
-        this.transactionService.createTransaction(CBU, SUM, WITHDRAWAL);
-
-        verify(this.transactionRepository).save(this.transactionArgumentCaptor.capture());
-        Transaction transactionToSave = this.transactionArgumentCaptor.getValue();
-        assertTransaction(transactionToSave, CBU, SUM, WITHDRAWAL);
+        assertSame(this.transaction, this.transactionArgumentCaptor.getValue());
+        verifyNoMoreInteractions(this.transactionFactory, this.transactionRepository);
     }
 
     @Test
     void createTransaction_withUnknownTransactionTypeThrowsInvalidTransactionTypeException() {
         when(this.transaction.getType()).thenReturn(null);
-        assertThrows(InvalidTransactionTypeException.class,
+        InvalidTransactionTypeException exception = assertThrows(InvalidTransactionTypeException.class,
                 () -> this.transactionService.createTransaction(this.transaction));
+        assertEquals("Invalid transaction type.", exception.getMessage());
     }
 
     @Test
@@ -132,15 +141,6 @@ class TransactionServiceTest {
         assertTrue(transactions.contains(this.otherTransaction));
 
         verify(this.transactionRepository, times(3)).getTransactionsByCbu(CBU);
-    }
-
-    private void assertTransaction(Transaction transaction,
-                                   Long expectedCbu,
-                                   Double expectedSum,
-                                   TransactionType expectedTransactionType) {
-        assertEquals(expectedCbu, transaction.getCbu());
-        assertEquals(expectedSum, transaction.getSum());
-        assertEquals(expectedTransactionType, transaction.getType());
     }
 
     private void verifyCommonTransactionCreation() {

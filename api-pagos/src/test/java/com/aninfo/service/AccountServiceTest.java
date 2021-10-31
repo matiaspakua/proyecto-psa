@@ -35,16 +35,13 @@ class AccountServiceTest {
     private AccountRepository accountRepository;
 
     @Mock
-    private TransactionService transactionService;
-
-    @Mock
     private Account account, otherAccount, expectedAccount;
 
     @Captor
     private ArgumentCaptor<Double> balanceArgumentCaptor;
 
     @BeforeEach
-    public void before() {
+    public void setUp() {
         initMocks(this);
     }
 
@@ -124,8 +121,9 @@ class AccountServiceTest {
         when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(this.account);
         when(this.account.getBalance()).thenReturn(balance);
 
-        assertThrows(InsufficientFundsException.class,
+        InsufficientFundsException exception = assertThrows(InsufficientFundsException.class,
                 () -> this.accountService.withdraw(CBU, sum));
+        assertEquals("Insufficient funds", exception.getMessage());
     }
 
     @Test
@@ -134,9 +132,7 @@ class AccountServiceTest {
         Double balance = 1200D;
         Double expectedBalance = 0D;
 
-        loadAccountTransactionContext(balance, sum, WITHDRAWAL);
-        Account actualAccount = this.accountService.withdraw(CBU, sum);
-        assertAccountTransaction(actualAccount, sum, expectedBalance, WITHDRAWAL);
+        testOperationOverAccount(WITHDRAWAL, sum, balance, expectedBalance);
     }
 
     @Test
@@ -145,21 +141,21 @@ class AccountServiceTest {
         Double balance = 1200D;
         Double expectedBalance = 1000D;
 
-        loadAccountTransactionContext(balance, sum, WITHDRAWAL);
-        Account actualAccount = this.accountService.withdraw(CBU, sum);
-        assertAccountTransaction(actualAccount, sum, expectedBalance, WITHDRAWAL);
+        testOperationOverAccount(WITHDRAWAL, sum, balance, expectedBalance);
     }
 
     @Test
     void deposit_withoutSumToAddThrowsDepositNegativeSumException() {
-        assertThrows(DepositNegativeSumException.class,
+        DepositNegativeSumException exception = assertThrows(DepositNegativeSumException.class,
                 () -> this.accountService.deposit(CBU, 0D));
+        assertEquals("Cannot deposit negative sums", exception.getMessage());
     }
 
     @Test
     void deposit_withNegativeSumToAddThrowsDepositNegativeSumException() {
-        assertThrows(DepositNegativeSumException.class,
+        DepositNegativeSumException exception = assertThrows(DepositNegativeSumException.class,
                 () -> this.accountService.deposit(CBU, -10D));
+        assertEquals("Cannot deposit negative sums", exception.getMessage());
     }
 
     @Test
@@ -168,25 +164,34 @@ class AccountServiceTest {
         Double balance = 1200D;
         Double expectedBalance = 1400D;
 
-        loadAccountTransactionContext(balance, sum, DEPOSIT);
-        Account actualAccount = this.accountService.deposit(CBU, sum);
-        assertAccountTransaction(actualAccount, sum, expectedBalance, DEPOSIT);
-
+        testOperationOverAccount(DEPOSIT, sum, balance, expectedBalance);
     }
 
-    private void loadAccountTransactionContext(Double balance, Double sum, TransactionType transactionType) {
+    private void testOperationOverAccount(TransactionType transactionType,
+                                          Double sum,
+                                          Double balance,
+                                          Double expectedBalance) {
         when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(this.account);
         when(this.account.getBalance()).thenReturn(balance);
-        when(this.accountRepository.save(this.account)).thenReturn(mock(Account.class));
-        doNothing().when(this.transactionService).createTransaction(CBU, sum, transactionType);
-    }
+        when(this.accountRepository.save(this.account)).thenReturn(this.expectedAccount);
 
-    private void assertAccountTransaction(Account actualAccount, Double sum, Double expectedBalance, TransactionType transactionType) {
-        assertSame(this.account, actualAccount);
+        Account actualAccount = this.doOperation(transactionType, sum);
+
+        assertSame(this.expectedAccount, actualAccount);
         verify(this.account).setBalance(this.balanceArgumentCaptor.capture());
         assertEquals(expectedBalance, this.balanceArgumentCaptor.getValue());
         verify(this.accountRepository).findAccountByCbu(CBU);
         verify(this.accountRepository).save(account);
-        verify(this.transactionService).createTransaction(CBU, sum, transactionType);
+    }
+
+    private Account doOperation(TransactionType transactionType, Double sum) {
+        switch (transactionType) {
+            case DEPOSIT:
+                return this.accountService.deposit(CBU, sum);
+            case WITHDRAWAL:
+                return this.accountService.withdraw(CBU, sum);
+            default:
+                return null;
+        }
     }
 }

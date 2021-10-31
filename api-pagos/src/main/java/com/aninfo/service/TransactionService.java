@@ -1,6 +1,7 @@
 package com.aninfo.service;
 
 import com.aninfo.exceptions.InvalidTransactionTypeException;
+import com.aninfo.factory.TransactionFactory;
 import com.aninfo.model.Transaction;
 import com.aninfo.model.TransactionType;
 import com.aninfo.repository.TransactionRepository;
@@ -10,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-import static com.aninfo.model.TransactionType.isValid;
-
 @Component
-public class TransactionService {
+class TransactionService {
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -21,13 +20,18 @@ public class TransactionService {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private TransactionFactory transactionFactory;
+
+    @Transactional
+    public void createFailedTransaction(Long cbu, Double sum, TransactionType transactionType) {
+        var transaction = this.transactionFactory.createFailedTransaction(cbu, sum, transactionType);
+        this.transactionRepository.save(transaction);
+    }
+
     @Transactional
     public void createTransaction(Long cbu, Double sum, TransactionType transactionType) {
-        if(!isValid(transactionType)) {
-            throw new InvalidTransactionTypeException("Invalid transaction type.");
-        }
-
-        var transaction = new Transaction(cbu, transactionType, sum);
+        var transaction = this.transactionFactory.createSuccessfulTransaction(cbu, sum, transactionType);
         this.transactionRepository.save(transaction);
     }
 

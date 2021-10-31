@@ -12,17 +12,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
-import static com.aninfo.model.TransactionType.DEPOSIT;
-import static com.aninfo.model.TransactionType.WITHDRAWAL;
-
 @Service
-public class AccountService {
+class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
-
-    @Autowired
-    private TransactionService transactionService;
 
     public Account createAccount(Account account) {
         return accountRepository.save(account);
@@ -55,10 +49,7 @@ public class AccountService {
         }
 
         account.setBalance(account.getBalance() - sum);
-        accountRepository.save(account);
-
-        this.transactionService.createTransaction(cbu, sum, WITHDRAWAL);
-        return account;
+        return accountRepository.save(account);
     }
 
     @Transactional
@@ -68,11 +59,8 @@ public class AccountService {
             throw new DepositNegativeSumException("Cannot deposit negative sums");
         }
 
-        Account account = accountRepository.findAccountByCbu(cbu);
+        var account = accountRepository.findAccountByCbu(cbu);
         account.setBalance(account.getBalance() + sum);
-        accountRepository.save(account);
-
-        this.transactionService.createTransaction(cbu, sum, DEPOSIT);
-        return account;
+        return accountRepository.save(account);
     }
 }
