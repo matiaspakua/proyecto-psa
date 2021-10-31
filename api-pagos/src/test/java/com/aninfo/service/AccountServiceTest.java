@@ -1,5 +1,6 @@
 package com.aninfo.service;
 
+import com.aninfo.exceptions.AccountNotFoundException;
 import com.aninfo.exceptions.DepositNegativeSumException;
 import com.aninfo.exceptions.InsufficientFundsException;
 import com.aninfo.model.Account;
@@ -80,19 +81,19 @@ class AccountServiceTest {
     }
 
     @Test
-    void findById() {
+    void findByCbu() {
         // Didn't find any account
-        when(this.accountRepository.findById(CBU)).thenReturn(Optional.empty());
-        assertFalse(this.accountService.findById(CBU).isPresent());
+        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(Optional.empty());
+        assertFalse(this.accountService.findByCbu(CBU).isPresent());
 
         // Actually find some account
-        when(this.accountRepository.findById(CBU)).thenReturn(Optional.of(this.expectedAccount));
-        Optional<Account> actualAccount = this.accountService.findById(CBU);
+        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(Optional.of(this.expectedAccount));
+        Optional<Account> actualAccount = this.accountService.findByCbu(CBU);
 
         assertTrue(actualAccount.isPresent());
         assertSame(this.expectedAccount, actualAccount.get());
 
-        verify(this.accountRepository, times(2)).findById(CBU);
+        verify(this.accountRepository, times(2)).findAccountByCbu(CBU);
     }
 
     @Test
@@ -105,12 +106,21 @@ class AccountServiceTest {
     }
 
     @Test
-    void deleteById() {
-        doNothing().when(this.accountRepository).deleteById(CBU);
+    void deleteByCbu() {
+        doNothing().when(this.accountRepository).deleteByCbu(CBU);
 
-        this.accountService.deleteById(CBU);
+        this.accountService.deleteByCbu(CBU);
 
-        verify(this.accountRepository).deleteById(CBU);
+        verify(this.accountRepository).deleteByCbu(CBU);
+    }
+
+    @Test
+    void withdraw_accountNotFoundThrowsAccountNotFoundException() {
+        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(Optional.empty());
+
+        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class,
+                () -> this.accountService.withdraw(CBU, 1200D));
+        assertEquals("The CBU does not have any related account.", exception.getMessage());
     }
 
     @Test
@@ -118,7 +128,7 @@ class AccountServiceTest {
         Double sum = 1200D;
         Double balance = 10D;
 
-        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(this.account);
+        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(Optional.of(this.account));
         when(this.account.getBalance()).thenReturn(balance);
 
         InsufficientFundsException exception = assertThrows(InsufficientFundsException.class,
@@ -159,6 +169,15 @@ class AccountServiceTest {
     }
 
     @Test
+    void deposit_accountNotFoundThrowsAccountNotFoundException() {
+        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(Optional.empty());
+
+        AccountNotFoundException exception = assertThrows(AccountNotFoundException.class,
+                () -> this.accountService.deposit(CBU, 1200D));
+        assertEquals("The CBU does not have any related account.", exception.getMessage());
+    }
+
+    @Test
     void deposit() {
         Double sum = 200D;
         Double balance = 1200D;
@@ -171,7 +190,7 @@ class AccountServiceTest {
                                           Double sum,
                                           Double balance,
                                           Double expectedBalance) {
-        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(this.account);
+        when(this.accountRepository.findAccountByCbu(CBU)).thenReturn(Optional.of(this.account));
         when(this.account.getBalance()).thenReturn(balance);
         when(this.accountRepository.save(this.account)).thenReturn(this.expectedAccount);
 

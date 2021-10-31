@@ -1,5 +1,6 @@
 package com.aninfo.service;
 
+import com.aninfo.exceptions.AccountNotFoundException;
 import com.aninfo.exceptions.DepositNegativeSumException;
 import com.aninfo.exceptions.InsufficientFundsException;
 import com.aninfo.model.Account;
@@ -15,6 +16,10 @@ import java.util.Optional;
 @Service
 class AccountService {
 
+    private static final String ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE = "The CBU does not have any related account.";
+    private static final String INSUFFICIENT_FUNDS_EXCEPTION_MESSAGE = "Insufficient funds";
+    private static final String DEPOSIT_NEGATIVE_EXCEPTION_MESSAGE = "Cannot deposit negative sums";
+
     @Autowired
     private AccountRepository accountRepository;
 
@@ -28,39 +33,45 @@ class AccountService {
         return accounts;
     }
 
-    public Optional<Account> findById(Long cbu) {
-        return accountRepository.findById(cbu);
+    public Optional<Account> findByCbu(Long cbu) {
+        return accountRepository.findAccountByCbu(cbu);
     }
 
     public void save(Account account) {
         accountRepository.save(account);
     }
 
-    public void deleteById(Long cbu) {
-        accountRepository.deleteById(cbu);
+    public void deleteByCbu(Long cbu) {
+        accountRepository.deleteByCbu(cbu);
     }
 
     @Transactional
     public Account withdraw(Long cbu, Double sum) {
-        Account account = accountRepository.findAccountByCbu(cbu);
+        Optional<Account> account = accountRepository.findAccountByCbu(cbu);
 
-        if (account.getBalance() < sum) {
-            throw new InsufficientFundsException("Insufficient funds");
+        if(account.isEmpty()) {
+            throw new AccountNotFoundException(ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE);
         }
 
-        account.setBalance(account.getBalance() - sum);
-        return accountRepository.save(account);
+        return account.filter(a -> a.getBalance() >= sum)
+                .map(a -> {
+                    a.setBalance(a.getBalance() - sum);
+                    return accountRepository.save(a);
+                })
+                .orElseThrow(() -> new InsufficientFundsException(INSUFFICIENT_FUNDS_EXCEPTION_MESSAGE));
     }
 
     @Transactional
     public Account deposit(Long cbu, Double sum) {
-
         if (sum <= 0) {
-            throw new DepositNegativeSumException("Cannot deposit negative sums");
+            throw new DepositNegativeSumException(DEPOSIT_NEGATIVE_EXCEPTION_MESSAGE);
         }
 
-        var account = accountRepository.findAccountByCbu(cbu);
-        account.setBalance(account.getBalance() + sum);
-        return accountRepository.save(account);
+        return accountRepository.findAccountByCbu(cbu)
+                .map(account -> {
+                    account.setBalance(account.getBalance() + sum);
+                    return accountRepository.save(account);
+                })
+                .orElseThrow(() -> new AccountNotFoundException(ACCOUNT_NOT_FOUND_EXCEPTION_MESSAGE));
     }
 }

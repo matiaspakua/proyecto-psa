@@ -49,13 +49,13 @@ public class Memo1BankApp {
 
 	@GetMapping("/accounts/{cbu}")
 	public ResponseEntity<Account> getAccount(@PathVariable Long cbu) {
-		Optional<Account> accountOptional = accountService.findById(cbu);
+		Optional<Account> accountOptional = accountService.findByCbu(cbu);
 		return ResponseEntity.of(accountOptional);
 	}
 
 	@PutMapping("/accounts/{cbu}")
 	public ResponseEntity<Account> updateAccount(@RequestBody Account account, @PathVariable Long cbu) {
-		Optional<Account> accountOptional = accountService.findById(cbu);
+		Optional<Account> accountOptional = accountService.findByCbu(cbu);
 
 		if (!accountOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
@@ -69,7 +69,7 @@ public class Memo1BankApp {
 
 	@DeleteMapping("/accounts/{cbu}")
 	public void deleteAccount(@PathVariable Long cbu) {
-		accountService.deleteById(cbu);
+		accountService.deleteByCbu(cbu);
 	}
 
 	@PutMapping("/accounts/{cbu}/withdraw")
