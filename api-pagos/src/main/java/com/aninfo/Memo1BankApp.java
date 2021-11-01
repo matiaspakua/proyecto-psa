@@ -2,8 +2,8 @@ package com.aninfo;
 
 import com.aninfo.model.Account;
 import com.aninfo.model.Transaction;
-import com.aninfo.service.AccountService;
-import com.aninfo.service.TransactionService;
+import com.aninfo.service.AccountServiceDecorated;
+import com.aninfo.service.TransactionServiceDecorated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
-import java.util.Optional;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Collection;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -27,10 +27,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Memo1BankApp {
 
 	@Autowired
-	private AccountService accountService;
+	private AccountServiceDecorated accountService;
 
 	@Autowired
-	private TransactionService transactionService;
+	private TransactionServiceDecorated transactionService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Memo1BankApp.class, args);
@@ -49,13 +49,13 @@ public class Memo1BankApp {
 
 	@GetMapping("/accounts/{cbu}")
 	public ResponseEntity<Account> getAccount(@PathVariable Long cbu) {
-		Optional<Account> accountOptional = accountService.findById(cbu);
+		Optional<Account> accountOptional = accountService.findByCbu(cbu);
 		return ResponseEntity.of(accountOptional);
 	}
 
 	@PutMapping("/accounts/{cbu}")
 	public ResponseEntity<Account> updateAccount(@RequestBody Account account, @PathVariable Long cbu) {
-		Optional<Account> accountOptional = accountService.findById(cbu);
+		Optional<Account> accountOptional = accountService.findByCbu(cbu);
 
 		if (!accountOptional.isPresent()) {
 			return ResponseEntity.notFound().build();
@@ -69,7 +69,7 @@ public class Memo1BankApp {
 
 	@DeleteMapping("/accounts/{cbu}")
 	public void deleteAccount(@PathVariable Long cbu) {
-		accountService.deleteById(cbu);
+		accountService.deleteByCbu(cbu);
 	}
 
 	@PutMapping("/accounts/{cbu}/withdraw")
