@@ -1,5 +1,8 @@
 # proyecto-psa (Mono Repo)
 
+## 0. Build Status Travis-CI
+[![Build Status](https://app.travis-ci.com/matiaspakua/proyecto-psa.svg?branch=main)](https://app.travis-ci.com/matiaspakua/proyecto-psa)
+
 ## 1. Repositorio para el Proyecto PSA
 
 Se propone una estructura de mono-repsitorio. En un mismo proyeecto de Git se arma una estructura de directorios para soportar el producto PSA New Spring ERP.
