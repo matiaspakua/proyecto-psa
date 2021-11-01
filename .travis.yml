@@ -1,0 +1,3 @@
+# https://www.javacodegeeks.com/2018/01/ci-cd-springboot-applications-using-travis-ci.html
+language: java
+jdk: oraclejdk8
