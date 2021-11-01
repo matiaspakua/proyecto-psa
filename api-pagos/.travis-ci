@@ -1,0 +1,14 @@
+# https://www.javacodegeeks.com/2018/01/ci-cd-springboot-applications-using-travis-ci.html
+language: java
+jdk: oraclejdk11
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+Build-and-Test:
+  - ./gradlew assemble
