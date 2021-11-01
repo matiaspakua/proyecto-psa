@@ -1,5 +1,6 @@
 package com.aninfo.service;
 
+import com.aninfo.factory.TransactionFactory;
 import com.aninfo.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,12 +19,16 @@ public class AccountServiceDecorated extends AccountService {
     @Autowired
     private TransactionService transactionService;
 
+    @Autowired
+    private TransactionFactory transactionFactory;
+
     @Override
     public Account withdraw(Long cbu, Double sum) {
         try {
             return this.withdrawWithTransaction(cbu, sum);
         } catch (Exception e) {
-            this.transactionService.createFailedTransaction(cbu, sum, WITHDRAWAL);
+            var transaction = this.transactionFactory.create(cbu, sum, WITHDRAWAL);
+            this.transactionService.saveTransaction(transaction.failed());
             throw e;
         }
     }
@@ -33,7 +38,8 @@ public class AccountServiceDecorated extends AccountService {
         try {
             return this.depositWithTransaction(cbu, sum);
         } catch (Exception e) {
-            this.transactionService.createFailedTransaction(cbu, sum, DEPOSIT);
+            var transaction = this.transactionFactory.create(cbu, sum, DEPOSIT);
+            this.transactionService.saveTransaction(transaction.failed());
             throw e;
         }
     }

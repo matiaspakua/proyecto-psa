@@ -15,10 +15,7 @@ public class TransactionServiceDecorated extends TransactionService {
         try {
             return this.transactionService.createTransaction(transaction);
         } catch (Exception e) {
-            this.transactionService.createFailedTransaction(transaction.getCbu(),
-                    transaction.getSum(),
-                    transaction.getType());
-            throw e;
+            return this.transactionService.saveTransaction(transaction.failed());
         }
     }
 }

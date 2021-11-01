@@ -1,15 +1,13 @@
 package com.aninfo.service;
 
 import com.aninfo.model.Transaction;
-import com.aninfo.model.TransactionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import static com.aninfo.model.TransactionType.DEPOSIT;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -22,7 +20,7 @@ class TransactionServiceDecoratedTest {
     private TransactionService transactionService;
 
     @Mock
-    private Transaction transaction, expectedTransaction;
+    private Transaction transaction, expectedTransaction, failedTransaction;
 
     @BeforeEach
     void setUp() {
@@ -42,22 +40,18 @@ class TransactionServiceDecoratedTest {
 
     @Test
     void createTransaction_asFailedTransaction() {
-        final Long cbu = 1234567890L;
-        final Double sum = 123D;
-        final TransactionType transactionType = DEPOSIT;
+        when(this.transactionService.createTransaction(this.transaction)).thenThrow(new IllegalArgumentException());
+        when(this.transaction.failed()).thenReturn(this.failedTransaction);
+        when(this.transactionService.saveTransaction(this.failedTransaction)).thenReturn(this.expectedTransaction);
 
-        when(this.transaction.getCbu()).thenReturn(cbu);
-        when(this.transaction.getSum()).thenReturn(sum);
-        when(this.transaction.getType()).thenReturn(transactionType);
+        Transaction actualTransaction = this.transactionServiceDecorated.createTransaction(this.transaction);
 
-        IllegalArgumentException expectedException = mock(IllegalArgumentException.class);
-        when(this.transactionService.createTransaction(this.transaction)).thenThrow(expectedException);
+        assertSame(this.expectedTransaction, actualTransaction);
 
-        Exception actualException = assertThrows(Exception.class,
-                () -> this.transactionServiceDecorated.createTransaction(this.transaction));
-
-        assertSame(expectedException, actualException);
-        verify(this.transactionService).createTransaction(this.transaction);
-        verify(this.transactionService).createFailedTransaction(cbu, sum, transactionType);
+        InOrder transactionServiceInOrder = inOrder(this.transactionService);
+        transactionServiceInOrder.verify(this.transactionService).createTransaction(this.transaction);
+        transactionServiceInOrder.verify(this.transactionService).saveTransaction(this.failedTransaction);
+        verify(this.transaction).failed();
+        verifyNoMoreInteractions(this.transactionService);
     }
 }

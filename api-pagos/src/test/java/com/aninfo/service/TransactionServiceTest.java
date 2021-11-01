@@ -60,31 +60,26 @@ class TransactionServiceTest {
     }
 
     @Test
-    void createFailedTransaction() {
-        TransactionType transactionType = DEPOSIT;
-        when(this.transactionFactory.createFailedTransaction(CBU, SUM, transactionType)).thenReturn(this.transaction);
+    void createTransaction() {
+        TransactionType transactionType = WITHDRAWAL;
+        when(this.transactionFactory.create(CBU, SUM, transactionType)).thenReturn(this.transaction);
         when(this.transactionRepository.save(this.transaction)).thenReturn(this.otherTransaction);
 
-        this.transactionService.createFailedTransaction(CBU, SUM, transactionType);
+        this.transactionService.createTransaction(CBU, SUM, transactionType);
 
-        verify(this.transactionFactory).createFailedTransaction(CBU, SUM, transactionType);
+        verify(this.transactionFactory).create(CBU, SUM, transactionType);
         verify(this.transactionRepository).save(this.transactionArgumentCaptor.capture());
         assertSame(this.transaction, this.transactionArgumentCaptor.getValue());
         verifyNoMoreInteractions(this.transactionFactory, this.transactionRepository);
     }
 
     @Test
-    void createTransaction() {
-        TransactionType transactionType = WITHDRAWAL;
-        when(this.transactionFactory.createSuccessfulTransaction(CBU, SUM, transactionType)).thenReturn(this.transaction);
-        when(this.transactionRepository.save(this.transaction)).thenReturn(this.otherTransaction);
+    void saveTransaction() {
+        when(this.transactionRepository.save(this.transaction)).thenReturn(this.expectedTransaction);
 
-        this.transactionService.createTransaction(CBU, SUM, transactionType);
+        Transaction actualTransaction = this.transactionService.saveTransaction(this.transaction);
 
-        verify(this.transactionFactory).createSuccessfulTransaction(CBU, SUM, transactionType);
-        verify(this.transactionRepository).save(this.transactionArgumentCaptor.capture());
-        assertSame(this.transaction, this.transactionArgumentCaptor.getValue());
-        verifyNoMoreInteractions(this.transactionFactory, this.transactionRepository);
+        assertSame(this.expectedTransaction, actualTransaction);
     }
 
     @Test

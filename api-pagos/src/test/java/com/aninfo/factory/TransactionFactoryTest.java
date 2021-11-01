@@ -2,12 +2,10 @@ package com.aninfo.factory;
 
 import com.aninfo.exceptions.InvalidTransactionTypeException;
 import com.aninfo.model.Transaction;
-import com.aninfo.model.TransactionStatus;
 import com.aninfo.model.TransactionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.aninfo.model.TransactionStatus.FAILED;
 import static com.aninfo.model.TransactionStatus.SUCCESSFUL;
 import static com.aninfo.model.TransactionType.DEPOSIT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,39 +27,19 @@ class TransactionFactoryTest {
     }
 
     @Test
-    void createSuccessfulTransaction_withoutTransactionTypeWillThrowAnInvalidTransactionTypeException() {
+    void create_withoutTransactionTypeWillThrowAnInvalidTransactionTypeException() {
         InvalidTransactionTypeException exception = assertThrows(InvalidTransactionTypeException.class,
-                () -> this.transactionFactory.createSuccessfulTransaction(CBU, SUM, null));
+                () -> this.transactionFactory.create(CBU, SUM, null));
         assertEquals(EXPECTED_INVALID_TRANSACTION_TYPE_MESSAGE, exception.getMessage());
     }
 
     @Test
     void createSuccessfulTransaction() {
-        assertTransaction(this.transactionFactory.createSuccessfulTransaction(CBU, SUM, TRANSACTION_TYPE),
-                CBU, SUM, TRANSACTION_TYPE, SUCCESSFUL);
-    }
+        Transaction transaction = this.transactionFactory.create(CBU, SUM, TRANSACTION_TYPE);
 
-    @Test
-    void createFailedTransaction_withoutTransactionTypeWillThrowAnInvalidTransactionTypeException() {
-        InvalidTransactionTypeException exception = assertThrows(InvalidTransactionTypeException.class,
-                () -> this.transactionFactory.createFailedTransaction(CBU, SUM, null));
-        assertEquals(EXPECTED_INVALID_TRANSACTION_TYPE_MESSAGE, exception.getMessage());
-    }
-
-    @Test
-    void createFailedTransaction() {
-        assertTransaction(this.transactionFactory.createFailedTransaction(CBU, SUM, TRANSACTION_TYPE),
-                CBU, SUM, TRANSACTION_TYPE, FAILED);
-    }
-
-    private void assertTransaction(Transaction actualTransaction,
-                                   Long expectedCbu,
-                                   Double expectedSum,
-                                   TransactionType expectedTransactionType,
-                                   TransactionStatus expectedTransactionStatus) {
-        assertEquals(expectedCbu, actualTransaction.getCbu());
-        assertEquals(expectedSum, actualTransaction.getSum());
-        assertEquals(expectedTransactionType, actualTransaction.getType());
-        assertEquals(expectedTransactionStatus, actualTransaction.getStatus());
+        assertEquals(CBU, transaction.getCbu());
+        assertEquals(SUM, transaction.getSum());
+        assertEquals(TRANSACTION_TYPE, transaction.getType());
+        assertEquals(SUCCESSFUL, transaction.getStatus());
     }
 }

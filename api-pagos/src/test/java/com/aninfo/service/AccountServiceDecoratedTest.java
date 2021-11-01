@@ -1,8 +1,11 @@
 package com.aninfo.service;
 
+import com.aninfo.factory.TransactionFactory;
 import com.aninfo.model.Account;
+import com.aninfo.model.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
@@ -28,7 +31,13 @@ class AccountServiceDecoratedTest {
     private TransactionService transactionService;
 
     @Mock
+    private TransactionFactory transactionFactory;
+
+    @Mock
     private Account expectedAccount;
+
+    @Mock
+    private Transaction transaction, failedTransaction;
 
     @Mock
     private IllegalArgumentException exception;
@@ -53,14 +62,20 @@ class AccountServiceDecoratedTest {
 
     @Test
     void withdraw_asFailedTransaction() {
+        when(this.transactionFactory.create(CBU, SUM, WITHDRAWAL)).thenReturn(this.transaction);
+        when(this.transaction.failed()).thenReturn(this.failedTransaction);
         when(this.accountService.withdraw(CBU, SUM)).thenThrow(this.exception);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> this.accountServiceDecorated.withdraw(CBU, SUM));
 
         assertSame(this.exception, exception);
-        verify(this.accountService).withdraw(CBU, SUM);
-        verify(this.transactionService).createFailedTransaction(CBU, SUM, WITHDRAWAL);
+
+        InOrder withdrawalTransactionInOrder = inOrder(this.accountService, this.transactionFactory, this.transaction, this.transactionService);
+        withdrawalTransactionInOrder.verify(this.accountService).withdraw(CBU, SUM);
+        withdrawalTransactionInOrder.verify(this.transactionFactory).create(CBU, SUM, WITHDRAWAL);
+        withdrawalTransactionInOrder.verify(this.transaction).failed();
+        withdrawalTransactionInOrder.verify(this.transactionService).saveTransaction(this.failedTransaction);
         verifyNoMoreInteractions(this.accountService, this.transactionService);
     }
 
@@ -79,6 +94,8 @@ class AccountServiceDecoratedTest {
 
     @Test
     void deposit_asFailedTransaction() {
+        when(this.transactionFactory.create(CBU, SUM, DEPOSIT)).thenReturn(this.transaction);
+        when(this.transaction.failed()).thenReturn(this.failedTransaction);
         when(this.accountService.deposit(CBU, SUM)).thenReturn(this.expectedAccount);
         doThrow(this.exception).when(this.transactionService).createTransaction(CBU, SUM, DEPOSIT);
 
@@ -86,9 +103,13 @@ class AccountServiceDecoratedTest {
                 () -> this.accountServiceDecorated.deposit(CBU, SUM));
 
         assertSame(this.exception, exception);
-        verify(this.accountService).deposit(CBU, SUM);
-        verify(this.transactionService).createTransaction(CBU, SUM, DEPOSIT);
-        verify(this.transactionService).createFailedTransaction(CBU, SUM, DEPOSIT);
+
+        InOrder withdrawalTransactionInOrder = inOrder(this.accountService, this.transactionService, this.transactionFactory, this.transaction);
+        withdrawalTransactionInOrder.verify(this.accountService).deposit(CBU, SUM);
+        withdrawalTransactionInOrder.verify(this.transactionService).createTransaction(CBU, SUM, DEPOSIT);
+        withdrawalTransactionInOrder.verify(this.transactionFactory).create(CBU, SUM, DEPOSIT);
+        withdrawalTransactionInOrder.verify(this.transaction).failed();
+        withdrawalTransactionInOrder.verify(this.transactionService).saveTransaction(this.failedTransaction);
         verifyNoMoreInteractions(this.accountService, this.transactionService);
     }
 }

@@ -2,7 +2,6 @@ package com.aninfo.model;
 
 import java.util.Set;
 
-
 public enum TransactionType {
     DEPOSIT,
     WITHDRAWAL;

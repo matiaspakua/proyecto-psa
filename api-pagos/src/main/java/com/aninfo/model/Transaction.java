@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import static com.aninfo.model.TransactionStatus.FAILED;
 import static com.aninfo.model.TransactionStatus.SUCCESSFUL;
 
 @Entity
@@ -27,11 +28,9 @@ public class Transaction {
         this.sum = sum;
     }
 
-    public Transaction(Long cbu, TransactionType type, Double sum, TransactionStatus status) {
-        this.cbu = cbu;
-        this.type = type;
-        this.sum = sum;
-        this.status = status;
+    public Transaction failed() {
+        this.status = FAILED;
+        return this;
     }
 
     public Long getId() {
