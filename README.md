@@ -16,13 +16,7 @@ proyecto-psa
 │   README.md
 │   .gitignore
 └───develop           # proyecto Java SpringBoot (Desarrollo)
-│   │   file011.txt
-│   │   file012.txt
-│   │
-│   └───subfolder1
-│       │   file111.txt
-│       │   file112.txt
-│       │   ...
+│   │   https://github.com/matiaspakua/psa-frontend
 └───testing           # proyecto de testing para el producto PSA New Spring ERP
 │   │
 │   └───subfolder1
@@ -31,10 +25,7 @@ proyecto-psa
 │       │   ...
 │
 └───api-pagos         # proyecto de la API de pagos (terceros)
-│   │   file021.txt
-│   │   file022.txt
-│   └───subfolder1
-│       │   ...
+│   │   https://github.com/frestivos/psa-api-pagos
 │
 └───deploy            # Proyecto con los scripts de deploy (operaciones)
 │   │   file011.txt
