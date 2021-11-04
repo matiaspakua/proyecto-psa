@@ -1,4 +1,4 @@
-# proyecto-psa (Mono Repo)
+# proyecto-psa
 
 
 ## 1. Repositorio para el Proyecto PSA
