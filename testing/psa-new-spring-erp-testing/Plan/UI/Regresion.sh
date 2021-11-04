@@ -9,3 +9,6 @@ robot	--consolecolors ON \
 		--debugfile ../../Results/UI/detailed.log \
 		../../Tests/UI/Login/Login.robot\
 		../../Tests/UI/Dashboard/VerificarVersion.robot
+		../../Tests/UI/Dashboard/VerificarVersion.robot
+		../../Tests/UI/Dashboard/VerificarVersion.robot
+		../../Tests/UI/Dashboard/VerificarVersion.robot

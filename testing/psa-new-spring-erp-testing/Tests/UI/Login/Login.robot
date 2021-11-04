@@ -17,3 +17,4 @@ TC001 - Login Correcto - S
     When El usuario "${USUARIO}" ingresa con la contraseña "${PASSWORD}"
     Then La pantalla principal de PSA se debe abrir
 
+    Log To Console    paso 1    
