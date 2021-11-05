@@ -5,6 +5,10 @@
 
 Se propone una estructura de mono-repsitorio. En un mismo proyeecto de Git se arma una estructura de directorios para soportar el producto PSA New Spring ERP.
 
+### Product Backlog:
+
+https://github.com/matiaspakua/proyecto-psa/projects/1
+
 ### Wiki proyecto PSA
 
 https://github.com/matiaspakua/proyecto-psa/wiki
