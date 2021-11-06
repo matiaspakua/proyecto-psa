@@ -10,5 +10,6 @@ Library    OperatingSystem    WITH NAME    OS
 
 *** Variables ***
 ${SERVER_LOCAL}         localhost:8080/
+${SERVER_HEROKU}         https://calm-lake-70360.herokuapp.com/
 ${BROWSER}        Chrome
 ${DELAY}          0

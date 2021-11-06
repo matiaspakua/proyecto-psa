@@ -1,9 +1,9 @@
 *** Settings ***
 Resource    ../../../Commons.resource
-Resource    Dashboard.resource
 
 *** Variables ***
-
+${TITLE} =     PSA New Spring ERP
+${WELCOME URL} =    http://${SERVER_LOCAL}/dashboard/
 
 *** Keywords ***
 Abrir el Navegador en la Pantalla de Login
