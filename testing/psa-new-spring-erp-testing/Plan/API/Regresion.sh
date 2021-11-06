@@ -2,14 +2,14 @@
 
 echo	Test Plan para ejecutar las pruebas de API de PSA usando Newman.
 
-newman run 	../../Tests/API/api-pagos/TP001-verificar-crear-pagos_postman_collection.json\
- 			-e ../../Resources/API/ENV/local_postgres-psa_postman_environment.json\
+newman run 	../../Tests/API/api-pagos/TP-001-Develop-Testing-BakcEndApiPagosPostmanCollection.json\
+ 			-e ../../Resources/API/ENV/Local.postman_environment.json\
  			-r html,cli\
  			--reporter-html-export ../../Results/API/\
  			--color on
  			
-newman run 	../../Tests/API/api-pagos/TP002-verificar_cancelar_pagos_postman_collection.json\
- 			-e ../../Resources/API/ENV/local_postgres-psa_postman_environment.json\
+newman run 	../../Tests/API/api-pagos/TP-001-Develop-Testing-BakcEndApiPagosPostmanCollection.json\
+ 			-e ../../Resources/API/ENV/Heroku-Deploy.postman_environment.json\
  			-r html,cli\
  			--reporter-html-export ../../Results/API/\
  			--color on
