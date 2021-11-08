@@ -1,0 +1,133 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Memo1BankApp</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aninfo</a>
+</div>
+
+<h1>Coverage Summary for Class: Memo1BankApp (com.aninfo)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Memo1BankApp</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.aninfo;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import org.springframework.boot.SpringApplication;
+<i class="no-highlight">4</i>&nbsp;import org.springframework.boot.autoconfigure.SpringBootApplication;
+<i class="no-highlight">5</i>&nbsp;import org.springframework.context.annotation.Bean;
+<i class="no-highlight">6</i>&nbsp;import springfox.documentation.builders.PathSelectors;
+<i class="no-highlight">7</i>&nbsp;import springfox.documentation.builders.RequestHandlerSelectors;
+<i class="no-highlight">8</i>&nbsp;import springfox.documentation.spi.DocumentationType;
+<i class="no-highlight">9</i>&nbsp;import springfox.documentation.spring.web.plugins.Docket;
+<i class="no-highlight">10</i>&nbsp;import springfox.documentation.swagger2.annotations.EnableSwagger2;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;@SpringBootApplication
+<i class="no-highlight">13</i>&nbsp;@EnableSwagger2
+<b class="nc"><i class="no-highlight">14</i>&nbsp;public class Memo1BankApp {</b>
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;	public static void main(String[] args) {
+<b class="nc"><i class="no-highlight">17</i>&nbsp;		SpringApplication.run(Memo1BankApp.class, args);</b>
+<i class="no-highlight">18</i>&nbsp;	}
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;	@Bean
+<i class="no-highlight">21</i>&nbsp;	public Docket apiDocket() {
+<b class="nc"><i class="no-highlight">22</i>&nbsp;		return new Docket(DocumentationType.SWAGGER_2)</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;			.select()</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;			.apis(RequestHandlerSelectors.any())</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;			.paths(PathSelectors.any())</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;			.build();</b>
+<i class="no-highlight">27</i>&nbsp;	}
+<i class="no-highlight">28</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-07 21:21</div>
+</div>
+</body>
+</html>

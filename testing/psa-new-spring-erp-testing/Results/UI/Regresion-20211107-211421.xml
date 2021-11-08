@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.9.5 on win32)" generated="20211107 21:14:21.395" rpa="false">
+<suite id="s1" name="Principal" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal">
+<suite id="s1-s1" name="TP-001-Develop-Testing-PantallaInicio" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-001-Develop-Testing-PantallaInicio.robot">
+<test id="s1-s1-t1" name="TC-001 - Verificar Ingreso a la Pantalla Principal.">
+<kw name="Given Abrir el Navegador en la Pantalla Principal" library="Principal">
+<doc>Abre el navegador en la pantalla pricipal del ERP.</doc>
+<kw name="Open Browser To Login Page" library="Principal">
+<kw name="Open Browser" library="Selenium">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${SERVER_HEROKU}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20211107 21:14:21.755" level="INFO">Opening browser 'Chrome' to base url 'https://calm-lake-70360.herokuapp.com/'.</msg>
+<status status="PASS" starttime="20211107 21:14:21.755" endtime="20211107 21:14:26.846"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211107 21:14:26.846" endtime="20211107 21:14:27.052"></status>
+</kw>
+<kw name="Set Selenium Speed" library="Selenium">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 21:14:27.052" endtime="20211107 21:14:27.067"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:21.755" endtime="20211107 21:14:27.067"></status>
+</kw>
+<kw name="Location Should Be" library="Selenium">
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<arguments>
+<arg>${SERVER_HEROKU}</arg>
+</arguments>
+<msg timestamp="20211107 21:14:30.103" level="INFO">Current location is 'https://calm-lake-70360.herokuapp.com/'.</msg>
+<status status="PASS" starttime="20211107 21:14:27.067" endtime="20211107 21:14:30.103"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:21.755" endtime="20211107 21:14:30.103"></status>
+</kw>
+<kw name="When El usuario ingresa a la plataforma" library="Principal">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>Nada para hacer</arg>
+</arguments>
+<msg timestamp="20211107 21:14:30.103" level="INFO">Execution passed with message:
+Nada para hacer</msg>
+<status status="PASS" starttime="20211107 21:14:30.103" endtime="20211107 21:14:30.103"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:30.103" endtime="20211107 21:14:30.103"></status>
+</kw>
+<kw name="Close Browser" library="Selenium" type="teardown">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20211107 21:14:30.103" endtime="20211107 21:14:35.268"></status>
+</kw>
+<doc>Verificar que la pantalla principal se cargue.</doc>
+<tags>
+<tag>https://github.com/matiaspakua/proyecto-psa/issues/6</tag>
+<tag>Smoke</tag>
+<tag>UI</tag>
+</tags>
+<status status="PASS" starttime="20211107 21:14:21.755" endtime="20211107 21:14:35.268" critical="yes">Nada para hacer</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:21.427" endtime="20211107 21:14:35.268"></status>
+</suite>
+<suite id="s1-s2" name="TP-002-Develop-Testing-DetalleDeTotalDeBilleterasDigitales" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-002-Develop-Testing-DetalleDeTotalDeBilleterasDigitales.robot">
+<test id="s1-s2-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.268" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.268"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.268" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.268"></status>
+</suite>
+<suite id="s1-s3" name="TP-003-Develop-Testing-DepositoDeDinero" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-003-Develop-Testing-DepositoDeDinero.robot">
+<test id="s1-s3-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.268" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.268"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.268" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.268"></status>
+</suite>
+<suite id="s1-s4" name="TP-004-Develop-Testing-ExtracionDeDinero" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-004-Develop-Testing-ExtracionDeDinero.robot">
+<test id="s1-s4-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.284" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.284" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.268" endtime="20211107 21:14:35.284"></status>
+</suite>
+<suite id="s1-s5" name="TP-005-Develop-Testing-ListaDeMovimientoDeBilleterasDigitales" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-005-Develop-Testing-ListaDeMovimientoDeBilleterasDigitales.robot">
+<test id="s1-s5-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.284" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</suite>
+<suite id="s1-s6" name="TP-006-Develop-Testing-AsociarBilleteraDigitalDeCliente" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-006-Develop-Testing-AsociarBilleteraDigitalDeCliente.robot">
+<test id="s1-s6-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.284" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</suite>
+<suite id="s1-s7" name="TP-007-Develop-Testing-EliminarBilleteraDigitalDeCliente" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-007-Develop-Testing-EliminarBilleteraDigitalDeCliente.robot">
+<test id="s1-s7-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.284" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.284" endtime="20211107 21:14:35.284"></status>
+</suite>
+<suite id="s1-s8" name="TP-008-Develop-Testing-ListaDeMovimientosPosiblesYNoPosibles" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-008-Develop-Testing-ListaDeMovimientosPosiblesYNoPosibles.robot">
+<test id="s1-s8-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.299" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299"></status>
+</suite>
+<suite id="s1-s9" name="TP-009-Develop-Testing-CrearUnaNuevaBilleteraDigitalEnUnaCuentaEnMenosDe3Minutos" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-009-Develop-Testing-CrearUnaNuevaBilleteraDigitalEnUnaCuentaEnMenosDe3Minutos.robot">
+<test id="s1-s9-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.299" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299"></status>
+</suite>
+<suite id="s1-s10" name="TP-010-Develop-Testing-AgregarFuncionalidadDeSugerenciaBotonCallToAction" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-010-Develop-Testing-AgregarFuncionalidadDeSugerenciaBotonCallToAction.robot">
+<test id="s1-s10-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.299" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.299"></status>
+</suite>
+<suite id="s1-s11" name="TP-011-Develop-Testing-FiltroDeFechasParaMovimientoDeCuentas" source="C:\Users\matias\workspace\PSA\proyecto-psa\testing\psa-new-spring-erp-testing\Tests\UI\Principal\TP-011-Develop-Testing-FiltroDeFechasParaMovimientoDeCuentas.robot">
+<test id="s1-s11-t1" name="TC-001">
+<kw name="Pass Execution" library="BuiltIn">
+<doc>Skips rest of the current test, setup, or teardown with PASS status.</doc>
+<arguments>
+<arg>TODO</arg>
+</arguments>
+<msg timestamp="20211107 21:14:35.315" level="INFO">Execution passed with message:
+TODO</msg>
+<status status="PASS" starttime="20211107 21:14:35.315" endtime="20211107 21:14:35.315"></status>
+</kw>
+<status status="PASS" starttime="20211107 21:14:35.315" endtime="20211107 21:14:35.315" critical="yes">TODO</status>
+</test>
+<status status="PASS" starttime="20211107 21:14:35.299" endtime="20211107 21:14:35.315"></status>
+</suite>
+<status status="PASS" starttime="20211107 21:14:21.395" endtime="20211107 21:14:35.315"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="11" fail="0">Critical Tests</stat>
+<stat pass="11" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">https://github.com/matiaspakua/proyecto-psa/issues/6</stat>
+<stat pass="1" fail="0">Smoke</stat>
+<stat pass="1" fail="0">UI</stat>
+</tag>
+<suite>
+<stat pass="11" fail="0" id="s1" name="Principal">Principal</stat>
+<stat pass="1" fail="0" id="s1-s1" name="TP-001-Develop-Testing-PantallaInicio">Principal.TP-001-Develop-Testing-PantallaInicio</stat>
+<stat pass="1" fail="0" id="s1-s2" name="TP-002-Develop-Testing-DetalleDeTotalDeBilleterasDigitales">Principal.TP-002-Develop-Testing-DetalleDeTotalDeBilleterasDigitales</stat>
+<stat pass="1" fail="0" id="s1-s3" name="TP-003-Develop-Testing-DepositoDeDinero">Principal.TP-003-Develop-Testing-DepositoDeDinero</stat>
+<stat pass="1" fail="0" id="s1-s4" name="TP-004-Develop-Testing-ExtracionDeDinero">Principal.TP-004-Develop-Testing-ExtracionDeDinero</stat>
+<stat pass="1" fail="0" id="s1-s5" name="TP-005-Develop-Testing-ListaDeMovimientoDeBilleterasDigitales">Principal.TP-005-Develop-Testing-ListaDeMovimientoDeBilleterasDigitales</stat>
+<stat pass="1" fail="0" id="s1-s6" name="TP-006-Develop-Testing-AsociarBilleteraDigitalDeCliente">Principal.TP-006-Develop-Testing-AsociarBilleteraDigitalDeCliente</stat>
+<stat pass="1" fail="0" id="s1-s7" name="TP-007-Develop-Testing-EliminarBilleteraDigitalDeCliente">Principal.TP-007-Develop-Testing-EliminarBilleteraDigitalDeCliente</stat>
+<stat pass="1" fail="0" id="s1-s8" name="TP-008-Develop-Testing-ListaDeMovimientosPosiblesYNoPosibles">Principal.TP-008-Develop-Testing-ListaDeMovimientosPosiblesYNoPosibles</stat>
+<stat pass="1" fail="0" id="s1-s9" name="TP-009-Develop-Testing-CrearUnaNuevaBilleteraDigitalEnUnaCuentaEnMenosDe3Minutos">Principal.TP-009-Develop-Testing-CrearUnaNuevaBilleteraDigitalEnUnaCuentaEnMenosDe3Minutos</stat>
+<stat pass="1" fail="0" id="s1-s10" name="TP-010-Develop-Testing-AgregarFuncionalidadDeSugerenciaBotonCallToAction">Principal.TP-010-Develop-Testing-AgregarFuncionalidadDeSugerenciaBotonCallToAction</stat>
+<stat pass="1" fail="0" id="s1-s11" name="TP-011-Develop-Testing-FiltroDeFechasParaMovimientoDeCuentas">Principal.TP-011-Develop-Testing-FiltroDeFechasParaMovimientoDeCuentas</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

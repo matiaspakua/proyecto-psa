@@ -1,7 +1,4 @@
 .settings
 .project
-*.html
-*.log
-Results/*
 libspecs/*
 */__pychache__*

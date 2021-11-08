@@ -1,0 +1,158 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AccountTransformer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aninfo.transformer</a>
+</div>
+
+<h1>Coverage Summary for Class: AccountTransformer (com.aninfo.transformer)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AccountTransformer</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AccountTransformer$MockitoMock$350198364</td>
+  </tr>
+  <tr>
+    <td class="name">AccountTransformer$MockitoMock$350198364$auxiliary$K8XtZJcZ</td>
+  </tr>
+  <tr>
+    <td class="name">AccountTransformer$MockitoMock$350198364$auxiliary$mff8gVip</td>
+  </tr>
+  <tr>
+    <td class="name">AccountTransformer$MockitoMock$350198364$auxiliary$sD57FzVO</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.aninfo.transformer;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.aninfo.api.request.AccountRequest;
+<i class="no-highlight">4</i>&nbsp;import com.aninfo.exceptions.InvalidCurrencyCodeException;
+<i class="no-highlight">5</i>&nbsp;import com.aninfo.model.Account;
+<i class="no-highlight">6</i>&nbsp;import com.aninfo.model.Currency;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.stereotype.Component;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import java.util.Random;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import static org.apache.commons.lang3.EnumUtils.isValidEnum;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;@Component
+<b class="nc"><i class="no-highlight">14</i>&nbsp;public class AccountTransformer {</b>
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    public Account transform(AccountRequest accountRequest) {
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        String currency = accountRequest.getCurrency();</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;        if(!isValidEnum(Currency.class, currency)) {</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;            throw new InvalidCurrencyCodeException(&quot;Invalid currency code.&quot;);</b>
+<i class="no-highlight">20</i>&nbsp;        }
+<i class="no-highlight">21</i>&nbsp;
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        return new Account(accountRequest.getCbu(),</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;                Currency.valueOf(currency),</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;                accountRequest.getName(),</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;                this.randomBalance());</b>
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    private Double randomBalance() {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        double start = 500;</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        double end = 15000;</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        double random = new Random().nextDouble();</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        return start + (random * (end - start));</b>
+<i class="no-highlight">33</i>&nbsp;    }
+<i class="no-highlight">34</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-07 21:21</div>
+</div>
+</body>
+</html>

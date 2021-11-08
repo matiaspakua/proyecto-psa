@@ -1,0 +1,256 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Transaction</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aninfo.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Transaction (com.aninfo.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Transaction</td>
+<td class="coverageStat">
+  <span class="percent">
+    53,3%
+  </span>
+  <span class="absValue">
+    (8/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    57,1%
+  </span>
+  <span class="absValue">
+    (12/21)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$48W5ZTfe</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$7VFdskyp</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$bvueB70O</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$gdKMfyVN</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$iO7JkCRO</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$jc7F6Txo</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$N1oIzJf3</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$n3iQxjpE</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$OUo6Dmqd</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$S73r0M7w</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$tPcetOLg</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$WNgsFhjb</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$x9QUHfVp</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$ZBfxfDVM</td>
+  </tr>
+  <tr>
+    <td class="name">Transaction$MockitoMock$1549917815$auxiliary$zDeGvQOy</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    53,3%
+  </span>
+  <span class="absValue">
+    (8/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    57,1%
+  </span>
+  <span class="absValue">
+    (12/21)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.aninfo.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import javax.persistence.Entity;
+<i class="no-highlight">4</i>&nbsp;import javax.persistence.GeneratedValue;
+<i class="no-highlight">5</i>&nbsp;import javax.persistence.GenerationType;
+<i class="no-highlight">6</i>&nbsp;import javax.persistence.Id;
+<i class="no-highlight">7</i>&nbsp;import javax.validation.constraints.NotNull;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import static com.aninfo.model.TransactionStatus.FAILED;
+<i class="no-highlight">10</i>&nbsp;import static com.aninfo.model.TransactionStatus.SUCCESSFUL;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;@Entity
+<i class="no-highlight">13</i>&nbsp;public class Transaction {
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    @Id
+<i class="no-highlight">16</i>&nbsp;    @GeneratedValue(strategy = GenerationType.AUTO)
+<i class="no-highlight">17</i>&nbsp;    private Long id;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    @NotNull
+<i class="no-highlight">20</i>&nbsp;    private Long cbu;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    @NotNull
+<i class="no-highlight">23</i>&nbsp;    private Long destinationCbu;
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    @NotNull
+<i class="no-highlight">26</i>&nbsp;    private TransactionType type;
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    @NotNull
+<i class="no-highlight">29</i>&nbsp;    private Double sum;
+<i class="no-highlight">30</i>&nbsp;
+<b class="fc"><i class="no-highlight">31</i>&nbsp;    @NotNull</b>
+<i class="no-highlight">32</i>&nbsp;    private TransactionStatus status = SUCCESSFUL;
+<i class="no-highlight">33</i>&nbsp;
+<b class="nc"><i class="no-highlight">34</i>&nbsp;    public Transaction() {</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;    public Transaction(Long cbu, Long destinationCbu, TransactionType type, Double sum) {</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        this.cbu = cbu;</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        this.destinationCbu = destinationCbu;</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        this.type = type;</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        this.sum = sum;</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    public Transaction failed() {
+<b class="nc"><i class="no-highlight">45</i>&nbsp;        this.status = FAILED;</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;        return this;</b>
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    public Long getId() {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        return id;</b>
+<i class="no-highlight">51</i>&nbsp;    }
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    public void setId(Long id) {
+<b class="nc"><i class="no-highlight">54</i>&nbsp;        this.id = id;</b>
+<i class="no-highlight">55</i>&nbsp;    }
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;    public Long getCbu() {
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        return cbu;</b>
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;    public void setCbu(Long cbu) {
+<b class="nc"><i class="no-highlight">62</i>&nbsp;        this.cbu = cbu;</b>
+<i class="no-highlight">63</i>&nbsp;    }
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;    public TransactionType getType() {
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        return type;</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;    public void setType(TransactionType type) {
+<b class="nc"><i class="no-highlight">70</i>&nbsp;        this.type = type;</b>
+<i class="no-highlight">71</i>&nbsp;    }
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;    public Long getDestinationCbu() {
+<b class="fc"><i class="no-highlight">74</i>&nbsp;        return destinationCbu;</b>
+<i class="no-highlight">75</i>&nbsp;    }
+<i class="no-highlight">76</i>&nbsp;
+<i class="no-highlight">77</i>&nbsp;    public void setDestinationCbu(Long destinationCbu) {
+<b class="nc"><i class="no-highlight">78</i>&nbsp;        this.destinationCbu = destinationCbu;</b>
+<i class="no-highlight">79</i>&nbsp;    }
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;    public Double getSum() {
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        return sum;</b>
+<i class="no-highlight">83</i>&nbsp;    }
+<i class="no-highlight">84</i>&nbsp;
+<i class="no-highlight">85</i>&nbsp;    public void setSum(Double sum) {
+<b class="nc"><i class="no-highlight">86</i>&nbsp;        this.sum = sum;</b>
+<i class="no-highlight">87</i>&nbsp;    }
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;    public TransactionStatus getStatus() {
+<b class="fc"><i class="no-highlight">90</i>&nbsp;        return status;</b>
+<i class="no-highlight">91</i>&nbsp;    }
+<i class="no-highlight">92</i>&nbsp;
+<i class="no-highlight">93</i>&nbsp;    public void setStatus(TransactionStatus status) {
+<b class="nc"><i class="no-highlight">94</i>&nbsp;        this.status = status;</b>
+<i class="no-highlight">95</i>&nbsp;    }
+<i class="no-highlight">96</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-07 21:21</div>
+</div>
+</body>
+</html>

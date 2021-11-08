@@ -1,0 +1,205 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Validator</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aninfo.api.validation</a>
+</div>
+
+<h1>Coverage Summary for Class: Validator (com.aninfo.api.validation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Validator</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,8%
+  </span>
+  <span class="absValue">
+    (15/16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$2qiwsCFd</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$4ygxWQil</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$99ksvqOx</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$J9P92d4x</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$Lp3zYG5j</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$nRPLTnO6</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$oIEnCpM0</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$ssPmj1Ix</td>
+  </tr>
+  <tr>
+    <td class="name">Validator$MockitoMock$1523725579$auxiliary$WRbUorS4</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,8%
+  </span>
+  <span class="absValue">
+    (15/16)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.aninfo.api.validation;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.aninfo.exceptions.RequestValidationException;
+<i class="no-highlight">4</i>&nbsp;import org.springframework.stereotype.Component;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;import static org.apache.commons.lang3.StringUtils.isBlank;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;@Component
+<b class="nc"><i class="no-highlight">9</i>&nbsp;public class Validator {</b>
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;    private static final String CBU_VALIDATION_MESSAGE = &quot;CBU could not be null or lower than zero.&quot;;
+<i class="no-highlight">12</i>&nbsp;    private static final String DESTINATION_CBU_VALIDATION_MESSAGE = &quot;Destination CBU could not be null or lower than zero.&quot;;
+<i class="no-highlight">13</i>&nbsp;    private static final String SUM_VALIDATION_MESSAGE = &quot;The SUM could not be null or lower than zero.&quot;;
+<i class="no-highlight">14</i>&nbsp;    private static final String TRANSACTION_TYPE_VALIDATION_MESSAGE = &quot;Transaction type could not be null nor empty.&quot;;
+<i class="no-highlight">15</i>&nbsp;    private static final String CURRENCY_VALIDATION_MESSAGE = &quot;The currency could not be null nor empty.&quot;;
+<i class="no-highlight">16</i>&nbsp;    private static final String ACCOUNT_NAME_VALIDATION_MESSAGE = &quot;The account name type could not be null nor empty.&quot;;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    public void validateCbu(Long cbu) {
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        if(!isValid(cbu)) {</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;            throw new RequestValidationException(CBU_VALIDATION_MESSAGE);</b>
+<i class="no-highlight">21</i>&nbsp;        }
+<i class="no-highlight">22</i>&nbsp;    }
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;    public void validateDestinationCbu(Long destinationCbu) {
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        if(!isValid(destinationCbu)) {</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;            throw new RequestValidationException(DESTINATION_CBU_VALIDATION_MESSAGE);</b>
+<i class="no-highlight">27</i>&nbsp;        }
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;    public void validateSum(Double sum) {
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        if(sum == null || sum &lt;= 0) {</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;            throw new RequestValidationException(SUM_VALIDATION_MESSAGE);</b>
+<i class="no-highlight">33</i>&nbsp;        }
+<i class="no-highlight">34</i>&nbsp;    }
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;    public void validateTransactionType(String transactionType) {
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        if(isBlank(transactionType)) {</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;            throw new RequestValidationException(TRANSACTION_TYPE_VALIDATION_MESSAGE);</b>
+<i class="no-highlight">39</i>&nbsp;        }
+<i class="no-highlight">40</i>&nbsp;    }
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    public void validateNotEquals(Long l1, Long l2, String message) {
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        if(l1.equals(l2)) {</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;            throw new RequestValidationException(message);</b>
+<i class="no-highlight">45</i>&nbsp;        }
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;    public void validateCurrency(String currency) {
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        if(isBlank(currency)) {</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;            throw new RequestValidationException(CURRENCY_VALIDATION_MESSAGE);</b>
+<i class="no-highlight">51</i>&nbsp;        }
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    public void validateName(String name) {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        if(isBlank(name)) {</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;            throw new RequestValidationException(ACCOUNT_NAME_VALIDATION_MESSAGE);</b>
+<i class="no-highlight">57</i>&nbsp;        }
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    private boolean isValid(Long cbu) {
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        return cbu != null &amp;&amp; cbu &gt; 0;</b>
+<i class="no-highlight">62</i>&nbsp;    }
+<i class="no-highlight">63</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-07 21:21</div>
+</div>
+</body>
+</html>
