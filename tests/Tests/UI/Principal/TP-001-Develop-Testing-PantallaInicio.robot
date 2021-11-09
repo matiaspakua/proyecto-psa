@@ -1,6 +1,6 @@
 *** Settings ***
-Resource    ../../../Resources/Commons.resource
-Resource    ../../../Resources/UI/WEB/PO/Principal.resource
+Resource    ../../Resources/Commons.resource
+Resource    ../../Resources/UI/WEB/PO/Principal.resource
 
 *** Variables ***
 
