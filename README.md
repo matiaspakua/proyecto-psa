@@ -1,5 +1,9 @@
 # proyecto-psa
 
+## Status Ejecución Test:
+
+[![Trigger Tests Manually](https://github.com/matiaspakua/proyecto-psa/actions/workflows/trigger_robot_framework_tests_manually.yml/badge.svg?branch=main)](https://github.com/matiaspakua/proyecto-psa/actions/workflows/trigger_robot_framework_tests_manually.yml)
+
 
 ## 1. Repositorio para el Proyecto PSA
 
