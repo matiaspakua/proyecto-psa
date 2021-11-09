@@ -4,7 +4,7 @@ on:
   push:
     # runs tests for commits pushed to master
     branches:
-      - master
+      - main
     # do not run tests if file README.md changes
     paths-ignore:
       - 'README.md'
@@ -34,7 +34,7 @@ jobs:
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/tests/Tests/UI/Principal:/opt/robotframework/tests:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
         # upload test reports as a zip file
