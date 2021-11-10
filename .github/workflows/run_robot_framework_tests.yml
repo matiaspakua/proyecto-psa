@@ -49,7 +49,7 @@ jobs:
         - name: Get Repository Name
           run: |
             export REPO="$(echo "${{ github.repository }}" | awk -F / '{print $2}' | sed -e "s/:refs//")"
-            echo "REPOSITORY_NAME::$REPO" >> $GITHUB_ENV
+            echo "REPOSITORY_NAME=$REPO" >> $GITHUB_ENV
             
         # when test are run for a commit, post results as a comment
         # note: comment is not posted for tests triggered for pull requests, only for a main branch (master)
@@ -60,5 +60,5 @@ jobs:
             GH_ACCESS_TOKEN: ${{ github.TOKEN }}
             REPO_OWNER: ${{ github.REPOSITORY_OwNER }}
             COMMIT_SHA: ${{ github.SHA }}
-            REPOSITORY: ${{ github.REPOSITORY_NAME }}
+            REPOSITORY: ${{ env.REPOSITORY_NAME }}
             REPORT_PATH: ${{ github.workspace }}/reports
