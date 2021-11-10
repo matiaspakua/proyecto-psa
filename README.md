@@ -1,9 +1,12 @@
 # proyecto-psa
 
-## Status Ejecución Test:
+## Status Ejecución Test Manual:
 
 [![Trigger Tests Manually](https://github.com/matiaspakua/proyecto-psa/actions/workflows/trigger_robot_framework_tests_manually.yml/badge.svg?branch=main)](https://github.com/matiaspakua/proyecto-psa/actions/workflows/trigger_robot_framework_tests_manually.yml)
 
+## Status Ejecución Test Automático:
+
+[![Run Robot Framework Tests](https://github.com/matiaspakua/proyecto-psa/actions/workflows/run_robot_framework_tests.yml/badge.svg?branch=main)](https://github.com/matiaspakua/proyecto-psa/actions/workflows/run_robot_framework_tests.yml)
 
 ## 1. Repositorio para el Proyecto PSA
 
